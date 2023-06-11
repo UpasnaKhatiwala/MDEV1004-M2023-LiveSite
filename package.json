@@ -9,6 +9,11 @@
   "main": "server.js",
   "license": "MIT",
   "private": true,
+  "engines": 
+  {
+    "node": "20.1.0",
+    "npm": "9.6.4"
+  },
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "debug": "^4.3.4",
