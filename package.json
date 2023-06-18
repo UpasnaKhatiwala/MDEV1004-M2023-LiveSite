@@ -5,8 +5,7 @@
   "author": "Upasna Khatiwala", 
   "engines": {
     "node": "20.1.0",
-    "npm": "9.6.4",
-    "yarn": "1.22.19"
+    "npm": "9.6.4"
   },
   "scripts": {
     "start": "node server.js"
