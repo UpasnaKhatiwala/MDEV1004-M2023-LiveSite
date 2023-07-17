@@ -10,25 +10,24 @@ interface IUser {
     updated: Date
 }
 
-const UserSchema = new Schema<IUser>
-    ({
-        username: String,
-        emailAddress: String,
-        displayName: String,
-        created:
-        {
+const UserSchema = new Schema<IUser>(
+    {
+        username: { type: String, required: true },
+        emailAddress: { type: String, required: true },
+        displayName: { type: String, required: true },
+        created: {
             type: Date,
-            default: Date.now()
+            default: Date.now,
         },
-        updated:
-        {
+        updated: {
             type: Date,
-            default: Date.now()
-        }
+            default: Date.now,
+        },
     },
-        {
-            collection: 'users'
-        });
+    {
+        collection: 'users',
+    }
+);
 
 UserSchema.plugin(passportLocalMongoose);
 
