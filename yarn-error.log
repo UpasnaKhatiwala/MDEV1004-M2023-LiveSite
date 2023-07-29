@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/upasnakhatiwala/.nvm/versions/node/v20.1.0/bin/node /Users/upasnakhatiwala/.nvm/versions/node/v20.1.0/bin/yarn add 1.22.19
+  /Users/upasnakhatiwala/.nvm/versions/node/v20.1.0/bin/node /Users/upasnakhatiwala/.nvm/versions/node/v20.1.0/bin/yarn add v1.22.19
 
 PATH: 
   /Users/upasnakhatiwala/.nvm/versions/node/v20.1.0/bin:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/upasnakhatiwala/Library/Android/sdk/platform-tools:/opt/homebrew/bin:/opt/homebrew/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/1.22.19: Not found
+  Error: https://registry.yarnpkg.com/v1.22.19: Not found
       at params.callback [as _callback] (/Users/upasnakhatiwala/.nvm/versions/node/v20.1.0/lib/node_modules/yarn/lib/cli.js:66145:18)
       at self.callback (/Users/upasnakhatiwala/.nvm/versions/node/v20.1.0/lib/node_modules/yarn/lib/cli.js:140890:22)
       at Request.emit (node:events:511:28)
