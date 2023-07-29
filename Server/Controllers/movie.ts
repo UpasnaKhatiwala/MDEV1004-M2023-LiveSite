@@ -6,13 +6,17 @@ import { GenerateToken } from '../Util/index';
 import mongoose from 'mongoose';
 
 // Utility function
-function SanitizeArray(unsanitizedArray: string[]): string[] {
-    let sanitizedArray: string[] = Array<string>();
-
-    for (const unsanitizedString of unsanitizedArray) {
-        sanitizedArray.push(unsanitizedString.trim());
+function SanitizeArray(unsanitizedValue: string | string[]): string[]
+{
+    if(Array.isArray(unsanitizedValue))
+    {
+        return unsanitizedValue.map((value) => value.trim());
+    } else if (typeof unsanitizedValue === "string")
+    {
+        return unsanitizedValue.split(",").map((value) => value.trim());
+    } else {
+        return [];
     }
-    return sanitizedArray;
 }
 
 /* Authentication functions */
@@ -138,30 +142,11 @@ export function AddMovie(req: Request, res: Response, next: NextFunction): void 
 
     try 
     {
-        if(req.body.genres == null || req.body.genres == undefined)
-        {
-            req.body.genres = "";
-        }
 
-        if(req.body.directors == null || req.body.genres == undefined)
-        {
-            req.body.directors = "";
-        }
-
-        if(req.body.writers == null || req.body.genres == undefined)
-        {
-            req.body.writers = "";
-        }
-
-        if(req.body.actors == null || req.body.genres == undefined)
-        {
-            req.body.actors = "";
-        }
-
-        let genres = SanitizeArray((req.body.genres as String).split(","));
-        let directors = SanitizeArray((req.body.directors as String).split(","));
-        let actors = SanitizeArray((req.body.actors as String).split(","));
-        let writers = SanitizeArray((req.body.writers as String).split(","));
+        let genres = SanitizeArray(req.body.genres);
+        let directors = SanitizeArray(req.body.directors);
+        let actors = SanitizeArray(req.body.actors);
+        let writers = SanitizeArray(req.body.writers);
     
         let movie = new Movie({
             movieID: req.body.movieID,
@@ -209,12 +194,10 @@ export function UpdateMovie(req: Request, res: Response, next: NextFunction): vo
     try
     {
         let id = req.params.id;
-
-
-    let genres = SanitizeArray((req.body.genres as String).split(","));
-    let directors = SanitizeArray((req.body.directors as String).split(","));
-    let actors = SanitizeArray((req.body.actors as String).split(","));
-    let writers = SanitizeArray((req.body.writers as String).split(","));
+        let genres = SanitizeArray(req.body.genres);
+        let directors = SanitizeArray(req.body.directors);
+        let actors = SanitizeArray(req.body.actors);
+        let writers = SanitizeArray(req.body.writers);
 
     let movieToUpdate = new Movie({
         _id: id,

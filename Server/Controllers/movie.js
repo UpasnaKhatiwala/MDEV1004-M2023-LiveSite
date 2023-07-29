@@ -9,12 +9,16 @@ const user_1 = __importDefault(require("../Models/user"));
 const movie_1 = __importDefault(require("../Models/movie"));
 const index_1 = require("../Util/index");
 const mongoose_1 = __importDefault(require("mongoose"));
-function SanitizeArray(unsanitizedArray) {
-    let sanitizedArray = Array();
-    for (const unsanitizedString of unsanitizedArray) {
-        sanitizedArray.push(unsanitizedString.trim());
+function SanitizeArray(unsanitizedValue) {
+    if (Array.isArray(unsanitizedValue)) {
+        return unsanitizedValue.map((value) => value.trim());
     }
-    return sanitizedArray;
+    else if (typeof unsanitizedValue === "string") {
+        return unsanitizedValue.split(",").map((value) => value.trim());
+    }
+    else {
+        return [];
+    }
 }
 function ProcessRegistration(req, res, next) {
     let newUser = new user_1.default({
@@ -106,22 +110,10 @@ function DisplayMovieByID(req, res, next) {
 exports.DisplayMovieByID = DisplayMovieByID;
 function AddMovie(req, res, next) {
     try {
-        if (req.body.genres == null || req.body.genres == undefined) {
-            req.body.genres = "";
-        }
-        if (req.body.directors == null || req.body.genres == undefined) {
-            req.body.directors = "";
-        }
-        if (req.body.writers == null || req.body.genres == undefined) {
-            req.body.writers = "";
-        }
-        if (req.body.actors == null || req.body.genres == undefined) {
-            req.body.actors = "";
-        }
-        let genres = SanitizeArray(req.body.genres.split(","));
-        let directors = SanitizeArray(req.body.directors.split(","));
-        let actors = SanitizeArray(req.body.actors.split(","));
-        let writers = SanitizeArray(req.body.writers.split(","));
+        let genres = SanitizeArray(req.body.genres);
+        let directors = SanitizeArray(req.body.directors);
+        let actors = SanitizeArray(req.body.actors);
+        let writers = SanitizeArray(req.body.writers);
         let movie = new movie_1.default({
             movieID: req.body.movieID,
             title: req.body.title,
@@ -160,10 +152,10 @@ exports.AddMovie = AddMovie;
 function UpdateMovie(req, res, next) {
     try {
         let id = req.params.id;
-        let genres = SanitizeArray(req.body.genres.split(","));
-        let directors = SanitizeArray(req.body.directors.split(","));
-        let actors = SanitizeArray(req.body.actors.split(","));
-        let writers = SanitizeArray(req.body.writers.split(","));
+        let genres = SanitizeArray(req.body.genres);
+        let directors = SanitizeArray(req.body.directors);
+        let actors = SanitizeArray(req.body.actors);
+        let writers = SanitizeArray(req.body.writers);
         let movieToUpdate = new movie_1.default({
             _id: id,
             movieID: req.body.movieID,
