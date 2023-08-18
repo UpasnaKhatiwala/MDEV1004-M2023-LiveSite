@@ -33,15 +33,30 @@ This function displays the Games List
 @param {NextFunction} next
 */
 export function DisplayGamesList(req: Request, res: Response, next: NextFunction): void {
-// Find all Games in the Games collection
-Games.find({})
-.then(function (data) {
-res.status(200).json(data);
-})
-.catch(function (err) {
-console.error(err);
-});
-}
+    // Find all Games in the Games collection
+    Games.find({})
+      .then(function (data) {
+        const gamesList = data.map(game => ({
+          Id: game.Id,
+          title: game.title,
+          genres: game.genres,
+          platforms: game.platforms,
+          releaseDate: game.releaseDate,
+          developers: game.developers,
+          designers: game.designers,
+          publishers: game.publishers,
+          rating: game.rating,
+          description: game.description,
+          imageURL: game.ImageURL,
+          artists: game.artists,
+          modes: game.modes
+        }));
+        res.status(200).json(gamesList);
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+  }
 /**
 
 This function displays a single game by the provided ID

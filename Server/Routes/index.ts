@@ -1,7 +1,7 @@
 /*file name - index.ts
 Student Name - Upasna Khatiwala
 Student id - 200543736
-date - June 23rd 2023
+date -  2023
 */
 
 
