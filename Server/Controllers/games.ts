@@ -36,7 +36,7 @@ export function DisplayGamesList(req: Request, res: Response, next: NextFunction
 // Find all Games in the Games collection
 Games.find({})
 .then(function (data) {
-res.status(200).json({ data: data });
+res.status(200).json({data });
 })
 .catch(function (err) {
 console.error(err);
